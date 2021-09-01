@@ -2,6 +2,7 @@ package com.johhns.BaseDatos_Semana_5.Modelo;
 
 public class Mascota  {
 
+    private int id_mascota ;
     private int foto ;
     private String nombre ;
     private int rating ;
@@ -13,6 +14,14 @@ public class Mascota  {
         this.foto = foto;
         this.nombre = nombre;
         this.rating = rating;
+    }
+
+    public int getId_mascota() {
+        return id_mascota;
+    }
+
+    public void setId_mascota(int id_mascota) {
+        this.id_mascota = id_mascota;
     }
 
     public int getFoto() {

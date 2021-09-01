@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.johhns.BaseDatos_Semana_5.Modelo.ConstructorMascotas;
 import com.johhns.BaseDatos_Semana_5.Modelo.Mascota;
 import com.johhns.BaseDatos_Semana_5.R;
 
@@ -37,19 +38,19 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity) ;
         holder.v_foto.setImageResource( aMascotas.get(position).getFoto() );
         holder.v_nombre.setText( aMascotas.get(position).getNombre() );
-        holder.v_rating.setText( String.valueOf( aMascotas.get(position).getRating() ) );
+        holder.v_rating.setText( String.valueOf( constructorMascotas.obtenerLikesMascota(aMascotas.get(position) ) ) );
         holder.v_boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int cantidad ;
                 String clase = v.getContext().getClass().getName().toString() ;
-                if ( clase.contains("Main") ) {
-                    cantidad = aMascotas.get(position).getRating() + 1;
-                    aMascotas.get(position).setRating(cantidad);
-                    holder.v_rating.setText( String.valueOf( aMascotas.get(position).getRating() ) );
-                }
+                    ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity) ;
+                    constructorMascotas.darLikeMascota( aMascotas.get(position) );
+                    ///holder.v_rating.setText( String.valueOf( aMascotas.get(position).getRating() ) );
+                    holder.v_rating.setText( String.valueOf( constructorMascotas.obtenerLikesMascota( aMascotas.get(position) ) ) );
             }
         });
 
